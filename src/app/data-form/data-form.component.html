@@ -1,0 +1,96 @@
+<div>
+    <div class="row col-12 form-container" [formGroup]="dataForm">
+        <div class="col-3" *ngIf="selectedControls?.includes('Saurce')">
+            <mat-form-field>
+                <mat-label>Saurce</mat-label>
+                <mat-select formControlName="saurceControl">
+                    <mat-option [value]="'A'">A</mat-option>
+                    <mat-option [value]="'B'">B</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-3" *ngIf="selectedControls?.includes('Category')">
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="categoryControl">
+                    <mat-option [value]="'A'">A</mat-option>
+                    <mat-option [value]="'B'">B</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-3" *ngIf="selectedControls?.includes('First Receipt Date')">
+            <mat-form-field>
+                <mat-label>First Receipt Date</mat-label>
+                <input matInput formControlName="firstReceiptDateControl" [matDatepicker]="firstpicker">
+                <mat-datepicker-toggle matSuffix [for]="firstpicker"></mat-datepicker-toggle>
+                <mat-datepicker #firstpicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-3" *ngIf="selectedControls?.includes('FU Receipt Date')">
+            <mat-form-field>
+                <mat-label>FU Receipt Date</mat-label>
+                <input matInput formControlName="fUReceiptDateControl" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row col-12 form-container">
+        <div class="col-5" *ngIf="selectedControls?.includes('Reference')">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-header">
+                        <th colspan="3">Reference(s)<span><button class="add-btn" (click)="addRow('reference')" mat-raised-button>+</button></span></th>
+                    </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Reference Type</th>
+                        <th scope="col">Reference Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reference of referenceList">
+                        <td>{{reference.no}}</td>
+                        <td><mat-form-field>
+                            <mat-label>Category</mat-label>
+                            <mat-select [value]="reference.type">
+                                <mat-option [value]="'A'">A</mat-option>
+                                <mat-option [value]="'B'">B</mat-option>
+                            </mat-select>
+                        </mat-form-field></td>
+                        <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="Reference Id" [value]="reference.id">
+                        </mat-form-field></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-7" *ngIf="selectedControls?.includes('Version')">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-header">
+                        <th colspan="5">Version Information
+                            <span><button class="add-btn" (click)="addRow('version')" mat-raised-button>+</button></span
+                                ></th></tr>
+                    <tr>
+                        <th scope="col">Version</th>
+                        <th scope="col">Receipt Date</th>
+                        <th scope="col">Central Receipt Date</th>
+                        <th scope="col">Version Disposition</th>
+                        <th scope="col">Version Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let version of versionList">
+                        <td>{{version.version}}</td>
+                        <td>{{version.receiptDate}}</td>
+                        <td>{{version.centralReceiptDate}}</td>
+                        <td>{{version.disposition}}</td>
+                        <td>{{version.comments}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

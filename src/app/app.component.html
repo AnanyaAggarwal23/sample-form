@@ -1,0 +1,3 @@
+<app-header [controlsList]="controlsList"
+(selectedControlsEmit)="setSelectedControls($event)"></app-header>
+<app-data-form [selectedControls]="selectedControls"></app-data-form>
